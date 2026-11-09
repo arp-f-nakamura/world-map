@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { AUTO, Game as PhaserGame, Scale, Scene } from "phaser";
 import styles from "./css_modules/Game.module.css";
 
-import backgroundImage from "../images/background/demo_background.png";
+import backgroundImage from "../assets/images/background/demo_background.png";
 
 type GameObjectId = "object-1" | "object-2";
 
@@ -123,6 +123,7 @@ const Game = ({ onObjectClick }: GameProps) => {
             {/* React：メッセージウィンドウ */}
             <div className={styles.messageWindow}>
                 <p>ここにメッセージを表示します。</p>
+                <p className={styles.gokumon}>0123</p>
             </div>
         </div>
     );
