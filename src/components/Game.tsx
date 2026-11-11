@@ -1,93 +1,61 @@
+import { AUTO, Game as PhaserGame, Scale } from "phaser";
 import { useEffect, useRef, useState } from "react";
-import { AUTO, Game as PhaserGame, Scale, Scene } from "phaser";
+import { GAME_HEIGHT, GAME_WIDTH } from "../constans/displaySize";
+import { object1Serif, object2Serif } from "../constans/serif";
+import { MapAScene } from "../scenes/MapAScene";
 import styles from "./css_modules/Game.module.css";
-import backgroundImage from "../assets/images/background/demo_background.png";
 import Footer from "./Footer";
+import { MapBScene } from "../scenes/MapBScene";
 
-type GameObjectId = "object-1" | "object-2";
+export type GameObjectId = "object-1" | "object-2";
 
 type GameProps = {
     onObjectClick?: (objectId: GameObjectId) => void;
 };
 
-const GAME_WIDTH = 750;
-const GAME_HEIGHT = 1334;
-
 const Game = ({ onObjectClick }: GameProps) => {
     const gameContainerRef = useRef<HTMLDivElement>(null);
     const [displayMessage, setDisplayMessage] = useState(false); // メッセージ表示の状態を管理するステート
+    const [activeObjectId, setActiveObjectId] = useState<GameObjectId | null>(
+        null,
+    );
+    const [serifIndex, setSerifIndex] = useState(0);
+
+    const handleObjectClick = (objectId: GameObjectId) => {
+        if (displayMessage) return;
+
+        setActiveObjectId(objectId);
+        setSerifIndex(0);
+        setDisplayMessage(true);
+        onObjectClick?.(objectId);
+    };
 
     // React側のコールバックをPhaserから参照する
-    const callbackRef = useRef(onObjectClick);
-    callbackRef.current = onObjectClick;
+    const callbackRef = useRef(handleObjectClick);
+    callbackRef.current = handleObjectClick;
+
+    const activeSerif = () => {
+        switch (activeObjectId) {
+            case "object-1":
+                return object1Serif;
+            case "object-2":
+                return object2Serif;
+            default:
+                return [];
+        }
+    };
+    const currentSerif = activeSerif()[serifIndex];
+
+    const handleNextSerif = () => {
+        if (serifIndex + 1 < activeSerif().length) {
+            setSerifIndex(serifIndex + 1);
+        } else {
+            setDisplayMessage(false);
+        }
+    };
 
     useEffect(() => {
         if (!gameContainerRef.current) return;
-
-        // PhaserのScene
-        class GameScene extends Scene {
-            constructor() {
-                super({ key: "GameScene" });
-            }
-
-            preload() {
-                // 背景画像を読み込む
-                this.load.image("background", backgroundImage);
-            }
-
-            create() {
-                // 背景画像を配置
-                this.add
-                    .image(GAME_WIDTH / 2, GAME_HEIGHT / 2, "background")
-                    .setDisplaySize(GAME_WIDTH, GAME_HEIGHT);
-
-                // 仮オブジェクト①
-                this.createGameObject(250, 450, "OBJECT 1", "object-1");
-
-                // 仮オブジェクト②
-                this.createGameObject(500, 800, "OBJECT 2", "object-2");
-            }
-
-            // オブジェクト生成処理
-            createGameObject(
-                x: number,
-                y: number,
-                label: string,
-                objectId: GameObjectId,
-            ) {
-                // クリック判定を持つ矩形
-                const object = this.add
-                    .rectangle(x, y, 140, 100, 0x3498db, 0.8)
-                    .setStrokeStyle(4, 0xffffff)
-                    .setInteractive({ useHandCursor: true });
-
-                // オブジェクト名
-                this.add
-                    .text(x, y, label, {
-                        fontSize: "22px",
-                        color: "#ffffff",
-                        fontStyle: "bold",
-                    })
-                    .setOrigin(0.5);
-
-                // クリックイベント
-                object.on("pointerdown", () => {
-                    console.log(`${label} clicked`);
-                    setDisplayMessage(true); // クリック時にメッセージを表示
-
-                    callbackRef.current?.(objectId);
-                });
-
-                // ホバー時の色変更
-                object.on("pointerover", () => {
-                    object.setFillStyle(0xe67e22, 0.9);
-                });
-
-                object.on("pointerout", () => {
-                    object.setFillStyle(0x3498db, 0.8);
-                });
-            }
-        }
 
         // Phaserの設定
         const config: Phaser.Types.Core.GameConfig = {
@@ -103,7 +71,10 @@ const Game = ({ onObjectClick }: GameProps) => {
                 autoCenter: Scale.CENTER_BOTH,
             },
 
-            scene: [GameScene],
+            scene: [
+                new MapAScene({ callbackRef }),
+                new MapBScene({ callbackRef }),
+            ], // Phaserのシーンを指定
         };
 
         // ゲームインスタンス生成
@@ -125,7 +96,9 @@ const Game = ({ onObjectClick }: GameProps) => {
             {/* React：フッター(メッセージウィンドウや移動ボタンを表示) */}
             <Footer
                 displayMessage={displayMessage}
-                setDisplayMessage={setDisplayMessage}
+                character={currentSerif?.character ?? ""}
+                serif={currentSerif?.serif}
+                onClick={handleNextSerif}
             />
         </div>
     );
