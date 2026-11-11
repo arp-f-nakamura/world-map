@@ -10,15 +10,40 @@
     z-index: 3;
 }
 
-.characterImage {
+.positionA {
     position: absolute;
     height: 90vh;
     bottom: -10%;
     left: -15%;
     z-index: 2;
 }
+.positionB {
+    position: absolute;
+    height: 90vh;
+    bottom: -10%;
+    right: -15%;
+    z-index: 2;
+}
+.positionC {
+    position: absolute;
+    height: 90vh;
+    bottom: -10%;
+    z-index: 2;
+}
 
-.characterImage img {
+.positionA img {
+    display: block;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+.positionB img {
+    display: block;
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+.positionC img {
     display: block;
     height: 100%;
     width: auto;

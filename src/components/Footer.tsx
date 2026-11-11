@@ -1,13 +1,12 @@
-import { ReactNode } from "react";
+import { Serif } from "../constans/serif";
 import styles from "./css_modules/Footer.module.css";
 
 type FooterProps = {
     displayMessage: boolean;
-    character: string;
-    serif: ReactNode;
+    serif: Serif;
     onClick: () => void;
 };
-const Footer = ({ displayMessage, character, serif, onClick }: FooterProps) => {
+const Footer = ({ displayMessage, serif, onClick }: FooterProps) => {
     return (
         displayMessage && (
             <>
@@ -18,12 +17,24 @@ const Footer = ({ displayMessage, character, serif, onClick }: FooterProps) => {
                     className={styles.button}
                 ></button>
                 {/* React：キャラ立ち絵 */}
-                <div className={styles.characterImage}>
-                    <img src={character} alt="Character" />
-                </div>
+                {serif.positionA && (
+                    <div className={styles.positionA}>
+                        <img src={serif.positionA} alt="Character" />
+                    </div>
+                )}
+                {serif.positionB && (
+                    <div className={styles.positionB}>
+                        <img src={serif.positionB} alt="Character" />
+                    </div>
+                )}
+                {serif.positionC && (
+                    <div className={styles.positionC}>
+                        <img src={serif.positionC} alt="Character" />
+                    </div>
+                )}
                 {/* React：メッセージウィンドウ */}
                 <div className={styles.messageWindow} onClick={onClick}>
-                    {serif}
+                    {serif.text}
                 </div>
             </>
         )

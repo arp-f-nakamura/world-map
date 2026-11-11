@@ -96,8 +96,7 @@ const Game = ({ onObjectClick }: GameProps) => {
             {/* React：フッター(メッセージウィンドウや移動ボタンを表示) */}
             <Footer
                 displayMessage={displayMessage}
-                character={currentSerif?.character ?? ""}
-                serif={currentSerif?.serif}
+                serif={currentSerif}
                 onClick={handleNextSerif}
             />
         </div>
