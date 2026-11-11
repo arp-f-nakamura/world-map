@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AUTO, Game as PhaserGame, Scale, Scene } from "phaser";
 import styles from "./css_modules/Game.module.css";
-
 import backgroundImage from "../assets/images/background/demo_background.png";
+import Footer from "./Footer";
 
 type GameObjectId = "object-1" | "object-2";
 
@@ -15,6 +15,7 @@ const GAME_HEIGHT = 1334;
 
 const Game = ({ onObjectClick }: GameProps) => {
     const gameContainerRef = useRef<HTMLDivElement>(null);
+    const [displayMessage, setDisplayMessage] = useState(false); // メッセージ表示の状態を管理するステート
 
     // React側のコールバックをPhaserから参照する
     const callbackRef = useRef(onObjectClick);
@@ -72,6 +73,7 @@ const Game = ({ onObjectClick }: GameProps) => {
                 // クリックイベント
                 object.on("pointerdown", () => {
                     console.log(`${label} clicked`);
+                    setDisplayMessage(true); // クリック時にメッセージを表示
 
                     callbackRef.current?.(objectId);
                 });
@@ -120,11 +122,11 @@ const Game = ({ onObjectClick }: GameProps) => {
                 <button>MENU</button>
             </div>
             <div ref={gameContainerRef} className={styles.gameContainer} />
-            {/* React：メッセージウィンドウ */}
-            <div className={styles.messageWindow}>
-                <p>ここにメッセージを表示します。</p>
-                <p className={styles.gokumon}>0123</p>
-            </div>
+            {/* React：フッター(メッセージウィンドウや移動ボタンを表示) */}
+            <Footer
+                displayMessage={displayMessage}
+                setDisplayMessage={setDisplayMessage}
+            />
         </div>
     );
 };
