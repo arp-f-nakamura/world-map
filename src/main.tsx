@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import "./styles/fonts.css";
+import { LanguageDataProvider } from "./contexts/LanguageContextProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <LanguageDataProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </LanguageDataProvider>
     </React.StrictMode>,
 );
