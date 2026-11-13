@@ -1,0 +1,9 @@
+.p {
+    color: black;
+}
+
+.div {
+    padding: 0 46px;
+    display: flex;
+    justify-content: space-between;
+}

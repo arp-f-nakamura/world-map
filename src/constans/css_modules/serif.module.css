@@ -1,3 +1,18 @@
-.gokumon {
-    font-family: "gokumon";
+.serif {
+    margin: 8px;
+    padding: 0;
+    font-size: 16px;
+}
+
+.span {
+    font-weight: bold;
+}
+
+.div {
+    display: flex;
+    column-gap: 16px;
+}
+
+.div > p {
+    margin: 0;
 }

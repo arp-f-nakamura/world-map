@@ -1,0 +1,13 @@
+.gokumon {
+    color: black;
+    font-family: "gokumon";
+    font-size: 32px;
+    margin: 16px 0;
+    text-align: center;
+}
+
+.input {
+    color: black;
+    margin: 16px 1px;
+    text-align: center;
+}

@@ -1,0 +1,15 @@
+.div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    height: 50px;
+}

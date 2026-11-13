@@ -34,6 +34,8 @@ const Footer = ({ displayMessage, serif, onClick }: FooterProps) => {
                 )}
                 {/* React：メッセージウィンドウ */}
                 <div className={styles.messageWindow} onClick={onClick}>
+                    <p className={styles.characterName}>{serif.character}</p>
+                    <div className={styles.divider} />
                     {serif.text}
                 </div>
             </>
