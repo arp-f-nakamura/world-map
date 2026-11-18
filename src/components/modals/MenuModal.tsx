@@ -3,6 +3,10 @@ import { ModalLayout } from "./ModalLayout";
 import classes from "./css_modules/MenuModal.module.css";
 import icon from "../../assets/images/icons/demo_icon.png";
 import { useState } from "react";
+import { ListTabs } from "../tabs/ListTabs";
+import { TabLayout } from "../tabs/TabLayout";
+import { WordTab } from "../tabs/WordTab";
+import { useLanguageData } from "../../hooks/useLanguageData";
 
 type MenuModalProps = {
     isOpen: boolean;
@@ -15,6 +19,7 @@ export const MenuModal = ({ isOpen, stage, onClose }: MenuModalProps) => {
     const [viewModal, setViewModal] = useState<
         "menu" | "word" | "test" | "recollection"
     >("menu");
+    const languageData = useLanguageData();
 
     return (
         <ModalLayout isOpen={isOpen}>
@@ -59,7 +64,19 @@ export const MenuModal = ({ isOpen, stage, onClose }: MenuModalProps) => {
                     離脱
                 </button>
             </div>
-            {viewModal === "word" && <p>言葉を選択中</p>}
+            {viewModal === "word" && (
+                <ListTabs
+                    panel0={
+                        <TabLayout>
+                            <WordTab words={languageData} />
+                        </TabLayout>
+                    }
+                    panel1={<TabLayout />}
+                    panel2={<TabLayout />}
+                    panel3={<TabLayout />}
+                    panel4={<TabLayout />}
+                />
+            )}
             {viewModal === "test" && <p>試練を選択中</p>}
             {viewModal === "recollection" && <p>回想を選択中</p>}
             <button

@@ -1,0 +1,15 @@
+.div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+}
+
+.emptycontent {
+    margin: 8px 0;
+}

@@ -1,0 +1,9 @@
+.div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 8px;
+    width: 100%;
+    padding: 8px;
+    text-align: center;
+    align-items: end;
+}
