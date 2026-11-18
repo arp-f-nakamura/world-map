@@ -1,11 +1,11 @@
-import { Dispatch, useRef } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import { useLanguageDataDispatch } from "../../hooks/useLanguageData";
 import { ModalLayout } from "./ModalLayout";
 import styles from "./css_modules/FontDecipheringModal.module.css";
 
 type FontDecipheringModalProps = {
     isOpen: boolean;
-    setIsOpen: Dispatch<React.SetStateAction<boolean>>;
+    setIsOpen: Dispatch<SetStateAction<boolean>>;
     font: keyof typeof styles;
     word: string;
     meaning: string;

@@ -1,8 +1,9 @@
+import { ReactNode } from "react";
 import styles from "./css_modules/ModalLayout.module.css";
 
 type ModalLayoutProps = {
     isOpen: boolean;
-    children: React.ReactNode;
+    children: ReactNode;
 };
 
 export const ModalLayout = ({ isOpen, children }: ModalLayoutProps) => {

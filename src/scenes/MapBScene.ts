@@ -2,9 +2,10 @@ import { Scene } from "phaser";
 import backgroundImage from "../assets/images/background/demo_background.png";
 import { GAME_HEIGHT, GAME_WIDTH } from "../constans/displaySize";
 import { GameObjectId } from "../components/Game";
+import { RefObject } from "react";
 
 type MapBSceneProps = {
-    callbackRef: React.RefObject<(objectId: GameObjectId) => void>;
+    callbackRef: RefObject<(objectId: GameObjectId) => void>;
 };
 
 // マップB

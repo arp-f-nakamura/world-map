@@ -1,11 +1,11 @@
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { ModalLayout } from "./ModalLayout";
 import { useLanguageDataDispatch } from "../../hooks/useLanguageData";
 import styles from "./css_modules/ResetModal.module.css";
 
 type ResetModalProps = {
     isOpen: boolean;
-    setIsOpen: Dispatch<React.SetStateAction<boolean>>;
+    setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export const ResetModal = ({ isOpen, setIsOpen }: ResetModalProps) => {
