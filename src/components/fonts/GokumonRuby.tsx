@@ -13,7 +13,8 @@ export const GokumonRuby = ({ word }: { word: string }) => {
         <>
             <a
                 className={styles.gokumon}
-                onClick={() => {
+                onClick={(event) => {
+                    event.stopPropagation();
                     setIsOpen(true);
                 }}
             >

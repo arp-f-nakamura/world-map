@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ModalLayout } from "./ModalLayout";
-import classes from "./css_modules/MenuModal.module.css";
+import styles from "./css_modules/MenuModal.module.css";
 import icon from "../../assets/images/icons/demo_icon.png";
 import { useState } from "react";
 import { ListTabs } from "../tabs/ListTabs";
@@ -23,19 +23,19 @@ export const MenuModal = ({ isOpen, stage, onClose }: MenuModalProps) => {
 
     return (
         <ModalLayout isOpen={isOpen}>
-            <div className={classes.div}>
+            <div className={styles.div}>
                 <button
-                    className={classes.button}
+                    className={styles.button}
                     disabled={
                         stage && stage !== "word" && stage !== "recollection"
                     }
                     onClick={() => setViewModal("word")}
                 >
-                    <img src={icon} className={classes.icon} />
+                    <img src={icon} className={styles.icon} />
                     言葉
                 </button>
                 <button
-                    className={classes.button}
+                    className={styles.button}
                     disabled={
                         stage &&
                         stage !== "test" &&
@@ -44,41 +44,61 @@ export const MenuModal = ({ isOpen, stage, onClose }: MenuModalProps) => {
                     }
                     onClick={() => setViewModal("test")}
                 >
-                    <img src={icon} className={classes.icon} />
+                    <img src={icon} className={styles.icon} />
                     試練
                 </button>
                 <button
-                    className={classes.button}
+                    className={styles.button}
                     disabled={stage && stage !== "recollection"}
                     onClick={() => setViewModal("recollection")}
                 >
-                    <img src={icon} className={classes.icon} />
+                    <img src={icon} className={styles.icon} />
                     回想
                 </button>
                 <button
-                    className={classes.button}
+                    className={styles.button}
                     disabled={stage !== undefined}
                     onClick={() => navigate("/")}
                 >
-                    <img src={icon} className={classes.icon} />
+                    <img src={icon} className={styles.icon} />
                     離脱
                 </button>
             </div>
             {viewModal === "word" && (
-                <ListTabs
-                    panel0={
-                        <TabLayout>
-                            <WordTab words={languageData} />
-                        </TabLayout>
-                    }
-                    panel1={<TabLayout />}
-                    panel2={<TabLayout />}
-                    panel3={<TabLayout />}
-                    panel4={<TabLayout />}
-                />
+                <div className={styles.detail}>
+                    <ListTabs
+                        panel0={
+                            <TabLayout>
+                                <WordTab words={languageData} />
+                            </TabLayout>
+                        }
+                        panel1={<TabLayout />}
+                        panel2={<TabLayout />}
+                        panel3={<TabLayout />}
+                        panel4={<TabLayout />}
+                    />
+                </div>
             )}
-            {viewModal === "test" && <p>試練を選択中</p>}
-            {viewModal === "recollection" && <p>回想を選択中</p>}
+            {viewModal === "test" && (
+                <div className={styles.detail}>
+                    <ListTabs
+                        panel0={
+                            <TabLayout>
+                                <WordTab words={languageData} />
+                            </TabLayout>
+                        }
+                        panel1={<TabLayout />}
+                        panel2={<TabLayout />}
+                        panel3={<TabLayout />}
+                        panel4={<TabLayout />}
+                    />
+                </div>
+            )}
+            {viewModal === "recollection" && (
+                <div className={styles.detail}>
+                    <p>回想を選択中</p>
+                </div>
+            )}
             <button
                 onClick={() => {
                     onClose();

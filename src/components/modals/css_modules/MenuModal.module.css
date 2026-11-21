@@ -13,3 +13,8 @@
 .icon {
     height: 50px;
 }
+
+.detail {
+    height: 60vh;
+    min-height: 0;
+}

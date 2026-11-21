@@ -9,7 +9,10 @@ type ModalLayoutProps = {
 export const ModalLayout = ({ isOpen, children }: ModalLayoutProps) => {
     return (
         isOpen && (
-            <div className={styles.overlay}>
+            <div
+                className={styles.overlay}
+                onClick={(event) => event.stopPropagation()}
+            >
                 <div className={styles.content}>{children}</div>
             </div>
         )

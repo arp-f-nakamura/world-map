@@ -18,7 +18,7 @@ export const ListTabs = ({
     panel4,
 }: ListTabsProps) => {
     return (
-        <Tabs>
+        <Tabs className={styles.tabs}>
             <TabList className={styles.tabList}>
                 <Tab className={styles.gokumon}>0</Tab>
                 <Tab className={styles.gokumon}>R</Tab>
@@ -26,11 +26,36 @@ export const ListTabs = ({
                 <Tab className={styles.gokumon}>S</Tab>
                 <Tab className={styles.gokumon}>T</Tab>
             </TabList>
-            <TabPanel>{panel0}</TabPanel>
-            <TabPanel>{panel1}</TabPanel>
-            <TabPanel>{panel2}</TabPanel>
-            <TabPanel>{panel3}</TabPanel>
-            <TabPanel>{panel4}</TabPanel>
+            <TabPanel
+                className={styles.tabPanel}
+                selectedClassName={styles.selectedTabPanel}
+            >
+                {panel0}
+            </TabPanel>
+            <TabPanel
+                className={styles.tabPanel}
+                selectedClassName={styles.selectedTabPanel}
+            >
+                {panel1}
+            </TabPanel>
+            <TabPanel
+                className={styles.tabPanel}
+                selectedClassName={styles.selectedTabPanel}
+            >
+                {panel2}
+            </TabPanel>
+            <TabPanel
+                className={styles.tabPanel}
+                selectedClassName={styles.selectedTabPanel}
+            >
+                {panel3}
+            </TabPanel>
+            <TabPanel
+                className={styles.tabPanel}
+                selectedClassName={styles.selectedTabPanel}
+            >
+                {panel4}
+            </TabPanel>
         </Tabs>
     );
 };
