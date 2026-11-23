@@ -10,3 +10,7 @@
     display: flex;
     column-gap: 16px;
 }
+
+.isSelect {
+    background-color: rgb(149, 91, 203);
+}
