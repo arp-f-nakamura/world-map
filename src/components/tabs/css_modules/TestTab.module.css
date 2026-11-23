@@ -1,0 +1,12 @@
+.div {
+    display: block;
+}
+
+.question {
+    margin: 16px 0;
+}
+
+.answer {
+    display: flex;
+    column-gap: 16px;
+}

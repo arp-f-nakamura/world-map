@@ -7,6 +7,8 @@ import { ListTabs } from "../tabs/ListTabs";
 import { TabLayout } from "../tabs/TabLayout";
 import { WordTab } from "../tabs/WordTab";
 import { useLanguageData } from "../../hooks/useLanguageData";
+import { TestTab } from "../tabs/TestTab";
+import { gokumonTest } from "../../constans/test";
 
 type MenuModalProps = {
     isOpen: boolean;
@@ -84,7 +86,7 @@ export const MenuModal = ({ isOpen, stage, onClose }: MenuModalProps) => {
                     <ListTabs
                         panel0={
                             <TabLayout>
-                                <WordTab words={languageData} />
+                                <TestTab tests={gokumonTest} />
                             </TabLayout>
                         }
                         panel1={<TabLayout />}

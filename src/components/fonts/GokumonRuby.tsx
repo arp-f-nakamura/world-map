@@ -3,7 +3,12 @@ import { useLanguageData } from "../../hooks/useLanguageData";
 import { FontDecipheringModal } from "../modals/FontDecipheringModal";
 import styles from "./css_modules/font.module.css";
 
-export const GokumonRuby = ({ word }: { word: string }) => {
+type GokumonRubyProps = {
+    word: string;
+    isLink?: boolean;
+};
+
+export const GokumonRuby = ({ word, isLink = true }: GokumonRubyProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const languageData = useLanguageData();
     const meaning =
@@ -13,10 +18,14 @@ export const GokumonRuby = ({ word }: { word: string }) => {
         <>
             <a
                 className={styles.gokumon}
-                onClick={(event) => {
-                    event.stopPropagation();
-                    setIsOpen(true);
-                }}
+                onClick={
+                    isLink
+                        ? (event) => {
+                              event.stopPropagation();
+                              setIsOpen(true);
+                          }
+                        : undefined
+                }
             >
                 <ruby>
                     {word}

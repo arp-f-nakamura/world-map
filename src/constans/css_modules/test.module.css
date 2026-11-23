@@ -1,0 +1,8 @@
+.div {
+    display: flex;
+    column-gap: 16px;
+}
+
+.p {
+    margin: 0;
+}

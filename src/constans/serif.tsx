@@ -235,7 +235,6 @@ export const tutorialSerif: Serif[] = [
                     <GokumonRuby word="4" />
                     <GokumonRuby word="?" />
                     <GokumonRuby word="AF" />
-                    <p>？</p>
                 </div>
             </>
         ),
@@ -257,7 +256,6 @@ export const tutorialSerif: Serif[] = [
             <>
                 <div className={styles.div}>
                     <GokumonRuby word="AE" />
-                    <p>！</p>
                 </div>
             </>
         ),
@@ -271,7 +269,6 @@ export const tutorialSerif: Serif[] = [
                     <GokumonRuby word="2" />
                     <GokumonRuby word="AE" />
                     <GokumonRuby word="0" />
-                    <p>！</p>
                 </div>
             </>
         ),
@@ -356,6 +353,8 @@ export const tutorialSerif: Serif[] = [
         text: (
             <p className={styles.serif}>
                 それだけは分かるようにしといてやるから、くれぐれも間違えてやるなよ。
+                <br />
+                じゃぁ頑張りな。
             </p>
         ),
     },
